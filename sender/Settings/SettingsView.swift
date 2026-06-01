@@ -130,7 +130,7 @@ struct SettingsView: View {
 
     private var relaySection: some View {
         Section {
-            TextField("relay host (e.g. relay.example.com)", text: $hostOverride)
+            TextField("192.168.8.89:8080  or  relay.example.com", text: $hostOverride)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 .keyboardType(.URL)
@@ -142,7 +142,7 @@ struct SettingsView: View {
         } header: {
             Text("RELAY SERVER")
         } footer: {
-            Text("Leave host blank to use the built-in default. Production uses TLS; local dev may use ws:// against localhost.")
+            Text("Enter ONLY the relay's IP address (or hostname) and port — e.g. 192.168.8.89:8080. Do NOT include a scheme (http://, ws://) or any path (/ws); the app adds those itself. Leave blank to use the built-in default. Turn on TLS only if your relay serves wss://.")
         }
     }
 
