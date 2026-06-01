@@ -171,6 +171,11 @@ final class CaptureCoordinator: NSObject {
         guard !videoRunning else { return }
 
         captureSession.beginConfiguration()
+        // CRITICAL: do NOT let the capture session reconfigure the app's shared
+        // AVAudioSession. By default it does, which clobbers the .playAndRecord/
+        // .measurement session our AVAudioEngine is using and kills the mic tap —
+        // breaking SoundAnalysis AND streamed PCM the moment video starts (T2).
+        captureSession.automaticallyConfiguresApplicationAudioSession = false
         captureSession.sessionPreset = .hd1280x720   // fixed 720p (PROTOCOL §4.1)
 
         // Front camera input.

@@ -3,7 +3,7 @@
 //  SafeHaven — Capture
 //
 //  H.264 encoder built on VideoToolbox's VTCompressionSession. PROTOCOL §4.1:
-//   - codec H.264, fixed 720p, AverageBitRate ≈ 2 Mbps, RealTime = true,
+//   - codec H.264, ~720p, AverageBitRate ≈ 2 Mbps, RealTime = true,
 //     AllowFrameReordering = false (no B-frames), Baseline profile.
 //   - Force an IDR every 2 seconds; MaxKeyFrameInterval ≈ 2 × fps.
 //   - VideoToolbox emits AVCC (length-prefixed NALs) with SPS/PPS in the format
@@ -12,6 +12,13 @@
 //     independently decodable. Delta frames are Annex-B without parameter sets.
 //   - Each Annex-B access unit becomes one binary frame: kind = VIDEO_H264,
 //     flags.KEYFRAME on IDR, cacheClass = retain-last-of-kind on IDR else none.
+//
+//  ORIENTATION/SIZE: the compression session is created LAZILY from the FIRST
+//  capture buffer's real dimensions (and recreated if they change). The capture
+//  connection rotates to portrait, so buffers arrive as 720×1280; hardcoding a
+//  landscape 1280×720 session made VideoToolbox rescale the portrait frame,
+//  which is what made the feed look wrong/sideways. Matching the source size
+//  fixes it and keeps the SPS dimensions correct for the receiver's decoder.
 //
 //  The encoder is fed CMSampleBuffers from CaptureCoordinator's video output. It
 //  hands finished Annex-B access units back via the delegate, which forwards
@@ -22,6 +29,7 @@
 import Foundation
 import VideoToolbox
 import CoreMedia
+import CoreVideo
 
 protocol VideoEncoderDelegate: AnyObject {
     /// One encoded Annex-B access unit ready to frame + send.
@@ -37,8 +45,11 @@ final class VideoEncoder {
     weak var delegate: VideoEncoderDelegate?
 
     private var session: VTCompressionSession?
-    private let width: Int32 = 1280
-    private let height: Int32 = 720
+    // Dimensions are derived from the ACTUAL capture buffer on the first frame
+    // (and re-derived if they change), so the encoded size matches the
+    // possibly-rotated/portrait source instead of a hardcoded landscape size.
+    private var configuredWidth: Int32 = 0
+    private var configuredHeight: Int32 = 0
     private let targetBitrate: Int = 2_000_000   // ~2 Mbps
     private let expectedFPS: Int32 = 30
 
@@ -48,11 +59,31 @@ final class VideoEncoder {
 
     // MARK: - Lifecycle
 
-    /// Create the compression session with the protocol's encoding properties.
+    /// Arm the encoder. The VTCompressionSession is created lazily on the first
+    /// frame, once the real buffer dimensions are known (see `encode`).
     func start() {
         lock.lock(); defer { lock.unlock() }
-        guard session == nil else { return }
+        forceKeyframeNext = true   // first emitted frame should be an IDR
+    }
 
+    func stop() {
+        lock.lock(); defer { lock.unlock() }
+        configuredWidth = 0
+        configuredHeight = 0
+        guard let session else { return }
+        VTCompressionSessionCompleteFrames(session, untilPresentationTimeStamp: .invalid)
+        VTCompressionSessionInvalidate(session)
+        self.session = nil
+    }
+
+    /// Request that the next encoded frame be a forced IDR (presence join / §6.2).
+    func forceKeyframe() {
+        lock.lock(); forceKeyframeNext = true; lock.unlock()
+    }
+
+    /// Create a compression session sized to the actual capture buffer.
+    /// Caller must hold `lock`.
+    private func makeSession(width: Int32, height: Int32) -> VTCompressionSession? {
         var newSession: VTCompressionSession?
         let status = VTCompressionSessionCreate(
             allocator: kCFAllocatorDefault,
@@ -66,12 +97,10 @@ final class VideoEncoder {
             refcon: nil,
             compressionSessionOut: &newSession
         )
-
         guard status == noErr, let session = newSession else {
             print("[video] VTCompressionSessionCreate failed: \(status)")
-            return
+            return nil
         }
-
         // Baseline profile maximizes browser decode compatibility (avc1.42E01F).
         VTSessionSetProperty(session, key: kVTCompressionPropertyKey_ProfileLevel,
                              value: kVTProfileLevel_H264_Baseline_AutoLevel)
@@ -90,23 +119,8 @@ final class VideoEncoder {
                              value: NSNumber(value: 2.0))
         VTSessionSetProperty(session, key: kVTCompressionPropertyKey_ExpectedFrameRate,
                              value: NSNumber(value: expectedFPS))
-
         VTCompressionSessionPrepareToEncodeFrames(session)
-        self.session = session
-        forceKeyframeNext = true   // first emitted frame should be an IDR
-    }
-
-    func stop() {
-        lock.lock(); defer { lock.unlock() }
-        guard let session else { return }
-        VTCompressionSessionCompleteFrames(session, untilPresentationTimeStamp: .invalid)
-        VTCompressionSessionInvalidate(session)
-        self.session = nil
-    }
-
-    /// Request that the next encoded frame be a forced IDR (presence join / §6.2).
-    func forceKeyframe() {
-        lock.lock(); forceKeyframeNext = true; lock.unlock()
+        return session
     }
 
     // MARK: - Encode
@@ -114,10 +128,21 @@ final class VideoEncoder {
     /// Encode one captured video frame (CMSampleBuffer from the capture output).
     func encode(sampleBuffer: CMSampleBuffer) {
         lock.lock()
-        guard let session,
-              let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             lock.unlock(); return
         }
+        // (Re)create the session sized to the ACTUAL buffer so the encoded frame
+        // matches the source orientation/dimensions exactly (no rescaling).
+        let w = Int32(CVPixelBufferGetWidth(imageBuffer))
+        let h = Int32(CVPixelBufferGetHeight(imageBuffer))
+        if session == nil || w != configuredWidth || h != configuredHeight {
+            if let old = session { VTCompressionSessionInvalidate(old) }
+            session = makeSession(width: w, height: h)
+            configuredWidth = w
+            configuredHeight = h
+            forceKeyframeNext = true   // a fresh session must open with an IDR
+        }
+        guard let session else { lock.unlock(); return }
         let forceKey = forceKeyframeNext
         forceKeyframeNext = false
         lock.unlock()
