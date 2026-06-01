@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SafeHaven">
+  <!-- Maskable variant: artwork is kept inside the safe zone (central ~80%)
+       so platform masks (circle/squircle) never clip the shield. The full
+       bleed background fills the maskable padding. -->
+  <defs>
+    <linearGradient id="shieldM" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#050810" />
+  <path
+    d="M256 138 L368 182 V272 C368 340 316 382 256 406 C196 382 144 340 144 272 V182 Z"
+    fill="url(#shieldM)"
+  />
+  <path
+    d="M222 266 L246 290 L300 234"
+    fill="none"
+    stroke="#050810"
+    stroke-width="22"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SafeHaven">
+  <!-- App icon. A protective shield in the warm amber active-accent on the
+       deep midnight background, matching the receiver palette
+       (bg #050810, amber #f59e0b). -->
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#050810" />
+  <path
+    d="M256 96 L400 152 V268 C400 356 332 410 256 440 C180 410 112 356 112 268 V152 Z"
+    fill="url(#shield)"
+  />
+  <path
+    d="M214 258 L244 290 L312 218"
+    fill="none"
+    stroke="#050810"
+    stroke-width="26"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
