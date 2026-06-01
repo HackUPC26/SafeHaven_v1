@@ -1,0 +1,16 @@
+{
+  "name": "safehaven-mock-sender",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SafeHaven v1 mock sender — connects as role=sender and drives a scripted incident end-to-end (events + synthetic PCM audio + headed video frames) so the receiver can be tested before the Swift app exists. See ../../PROTOCOL.md.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node mock-sender.js"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}
