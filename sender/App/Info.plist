@@ -40,7 +40,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Weather uses the microphone for ambient noise and wind readings.</string>
 	<key>SafeHavenRelayHost</key>
-	<string>localhost:8080</string>
+	<string>192.168.8.89:8080</string>
 	<key>SafeHavenRelayUsesTLS</key>
 	<false/>
 	<key>UIBackgroundModes</key>
