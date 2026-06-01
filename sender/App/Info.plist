@@ -22,49 +22,6 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-
-	<!-- Disguise: present as a plain light-mode weather utility. -->
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
-	<key>UILaunchScreen</key>
-	<dict/>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>UIRequiresFullScreen</key>
-	<false/>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>arm64</string>
-	</array>
-
-	<!-- Permission usage strings (ported from the legacy Info.plist; phrased to
-	     read like an ordinary weather app, requested in-context on escalation). -->
-	<key>NSCameraUsageDescription</key>
-	<string>Weather uses the camera for the augmented-reality sky view.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Weather uses the microphone for ambient noise and wind readings.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Weather uses your location to show the local forecast.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Weather uses your location to keep the local forecast current in the background.</string>
-
-	<!-- Background modes: audio keeps the mic/SoundAnalysis + PCM streaming
-	     alive when backgrounded; location keeps GPS updates flowing. -->
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>location</string>
-	</array>
-
-	<!-- App Transport Security: production is wss:// (TLS). For local dev,
-	     NSAllowsLocalNetworking permits ws:// against localhost/LAN without
-	     disabling ATS globally. See sender/README.md. -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -72,13 +29,42 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-
-	<!-- Relay host. Read by Config/RelayConfig.swift; overridable in hidden
-	     Settings. Replaces the legacy EXPO_PUBLIC_SIGNAL_HOST env var. -->
+	<key>NSCameraUsageDescription</key>
+	<string>So we can safely stream your video feed to a trusted contact.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Weather connects to nearby weather stations on your local network to refine the local forecast.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Weather uses your location to keep the local forecast current in the background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Weather uses your location to show the local forecast.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Weather uses the microphone for ambient noise and wind readings.</string>
 	<key>SafeHavenRelayHost</key>
 	<string>localhost:8080</string>
-	<!-- Whether the default host should use TLS (wss). Dev localhost = false. -->
 	<key>SafeHavenRelayUsesTLS</key>
+	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>location</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
 </plist>
