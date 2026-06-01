@@ -221,6 +221,7 @@ final class RelayClient: NSObject {
         backoff = backoffStart                 // reset backoff on open (§8)
         let isReconnect = hasOpenedOnce
         hasOpenedOnce = true
+        print("[relay] connected to \(RelayConfig.host) (reconnect: \(isReconnect))")
 
         // Optional hello announce (reserved for future negotiation, §6.1).
         task?.send(.string(EventEnvelope.hello())) { _ in }
