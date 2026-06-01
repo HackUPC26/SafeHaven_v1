@@ -189,7 +189,11 @@ final class RelayClient: NSObject {
         print("[relay] connecting to \(url.absoluteString)")
 
         let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
+        // Fail fast with a concrete error instead of silently waiting — our own
+        // backoff (handleClose → scheduleReconnect) drives retries, and a visible
+        // error is essential for diagnosing LAN/permission/firewall problems.
+        config.waitsForConnectivity = false
+        config.timeoutIntervalForRequest = 10
         let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
         self.session = session
 
