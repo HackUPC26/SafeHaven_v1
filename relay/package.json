@@ -1,0 +1,17 @@
+{
+  "name": "safehaven-relay",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SafeHaven v1 stateful WebSocket relay (M1). One WebSocket per participant, keyed by session token; fans out sender->receivers, retains the per-session event log + last video IDR for late joiners. RAM only, payload-opaque. See ../PROTOCOL.md.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node relay.js",
+    "dev": "node relay.js"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}
