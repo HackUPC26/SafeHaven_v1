@@ -8,15 +8,16 @@
 #
 # No third-party dependencies. Everything is Apple-platform native:
 # AVFoundation / VideoToolbox (capture + H.264), SoundAnalysis (on-device ML),
-# CoreLocation (GPS), Security + CryptoKit (token/key generation + the deferred
-# encryption seam), Network/URLSession (relay WebSocket).
+# Speech (on-device spoken-codeword recognition), CoreLocation (GPS), Security +
+# CryptoKit (token/key generation + the deferred encryption seam),
+# Network/URLSession (relay WebSocket).
 #
 # A physical device is REQUIRED to exercise camera + SoundAnalysis (the
 # simulator has no camera and SNClassifySoundRequest is unavailable there).
 
 name: SafeHaven
 options:
-  bundleIdPrefix: com.fochs
+  bundleIdPrefix: com.kene
   deploymentTarget:
     iOS: "17.0"
   createIntermediateGroups: true
@@ -52,7 +53,7 @@ targets:
       - path: Config
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.fochs.safehaven
+        PRODUCT_BUNDLE_IDENTIFIER: com.kene.safehaven
         PRODUCT_NAME: SafeHaven
         INFOPLIST_FILE: App/Info.plist
         CODE_SIGN_ENTITLEMENTS: App/SafeHaven.entitlements
@@ -66,6 +67,7 @@ targets:
       - sdk: CoreMedia.framework
       - sdk: CoreVideo.framework
       - sdk: SoundAnalysis.framework
+      - sdk: Speech.framework         # on-device spoken-codeword recognition
       - sdk: CoreLocation.framework
       - sdk: Security.framework
       - sdk: CryptoKit.framework      # reserved for the deferred encryption seam

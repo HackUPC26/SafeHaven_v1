@@ -66,6 +66,13 @@ final class TierController: ObservableObject {
         capture.delegate = self
         location.delegate = self
         relay.delegate = self
+
+        // Always-on, on-device spoken-codeword listening from launch (typed
+        // codewords in the disguise search field remain the fallback). This
+        // requests microphone permission up front.
+        capture.startMonitoring(codewords: [settings.codewords.tier1,
+                                            settings.codewords.tier2,
+                                            settings.codewords.tier3])
     }
 
     // MARK: - Triggers (from the disguise UI)
@@ -225,9 +232,13 @@ extension TierController: CaptureCoordinatorDelegate {
         relay.sendEvent(event)
         emitToLocalLogIfConsented(event)
     }
-}
 
-// MARK: - GPS → transport
+    func captureCoordinator(_ c: CaptureCoordinator, didRecognizeCodeword word: String) {
+        // Spoken codeword (on-device) → identical monotonic tier logic as typed
+        // input. handleCodewordInput gates so e.g. "stormy" at Tier 0 does nothing.
+        handleCodewordInput(word)
+    }
+}
 
 extension TierController: LocationProviderDelegate {
     func locationProvider(_ provider: LocationProvider, didUpdate event: GPSUpdateEvent) {

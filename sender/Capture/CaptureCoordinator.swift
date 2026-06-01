@@ -4,25 +4,26 @@
 //
 //  Owns the capture graph and coordinates the AVAudioSession (PROTOCOL §5.4):
 //   - ONE AVAudioEngine for the microphone. Its single input tap FANS OUT the
-//     same buffer to BOTH (a) the SoundClassifier (SoundAnalysis) and (b) the
-//     AudioStreamer (16k Int16 PCM packetizer). No duplicate capture sessions.
+//     same buffer to (a) the SpeechCodewordListener (ALWAYS, so spoken codewords
+//     work from idle), and — once an incident is active (Tier ≥ 1) — to (b) the
+//     SoundClassifier (SoundAnalysis) and (c) the AudioStreamer (16k Int16 PCM).
+//     No duplicate capture sessions / engines.
 //   - ONE AVCaptureSession for the front-camera video, feeding the VideoEncoder.
 //
-//  AVAudioSession coordination: a SINGLE shared session configured exactly as
-//  the legacy AI module (PROTOCOL §5.3): category .playAndRecord, mode
-//  .measurement, options [.mixWithOthers, .allowBluetoothHFP]. .playAndRecord is
-//  required because the receiver/operator may also need audio routing and it
-//  keeps the mic alive while backgrounded (UIBackgroundModes: audio). The same
-//  session serves both the engine and the capture session.
+//  Always-on listening: the engine starts at `startMonitoring()` (app launch) so
+//  a SPOKEN codeword can OPEN an incident, not just escalate it. This keeps the
+//  mic active while disguised (the user accepted that trade-off); it also means
+//  the mic permission is requested up front and iOS shows the recording
+//  indicator. The classifier + PCM streamer only run during an incident.
 //
-//  Tier gating (driven by TierController):
-//   - audio (engine + classifier + PCM) and video are started/stopped here.
-//   - Video begins at Tier ≥ 2 (PROTOCOL §4.1 / decisions §0). Audio + GPS +
-//     classification begin at Tier ≥ 1 (GPS/classification are wired by
-//     TierController; this coordinator handles the audio engine + video).
+//  AVAudioSession: a single shared session, category .playAndRecord, mode
+//  .measurement, options [.mixWithOthers, .allowBluetoothHFP] (verbatim from the
+//  legacy AI module). The video capture session is told NOT to reconfigure it
+//  (automaticallyConfiguresApplicationAudioSession = false) so starting video
+//  never disrupts the running engine.
 //
-//  Permissions are requested IN-CONTEXT (on first start of each subsystem),
-//  never at first launch.
+//  Permissions are requested IN-CONTEXT (mic on monitoring start, camera on video
+//  start), never bundled at first launch.
 //
 
 import Foundation
@@ -47,17 +48,23 @@ protocol CaptureCoordinatorDelegate: AnyObject {
                             didEmitAILabel label: String,
                             confidence: Double,
                             rawIdentifier: String)
+    /// A spoken codeword was recognized (on-device). The owner applies the same
+    /// monotonic tier logic as typed input.
+    func captureCoordinator(_ c: CaptureCoordinator, didRecognizeCodeword word: String)
 }
 
 final class CaptureCoordinator: NSObject {
 
     weak var delegate: CaptureCoordinatorDelegate?
 
-    // Audio graph (single engine).
+    // Audio graph (single engine, always-on once monitoring starts).
     private let engine = AVAudioEngine()
     private let classifier = SoundClassifier()
     private let audioStreamer = AudioStreamer()
-    private var audioRunning = false
+    private let speech = SpeechCodewordListener()
+    private var engineRunning = false          // mic engine + tap (runs from monitoring)
+    private var audioConsumersActive = false   // classifier + PCM streamer (Tier ≥ 1)
+    private var inputFormat: AVAudioFormat?
 
     // Video graph (single capture session).
     private let captureSession = AVCaptureSession()
@@ -72,29 +79,28 @@ final class CaptureCoordinator: NSObject {
         classifier.delegate = self
         audioStreamer.delegate = self
         videoEncoder.delegate = self
+        speech.delegate = self
     }
 
-    // MARK: - Audio (Tier ≥ 1)
+    // MARK: - Monitoring (always-on, from app launch)
 
-    /// Start the shared audio engine and fan its mic buffer to the classifier
-    /// (SoundAnalysis) and the PCM streamer. Requests mic permission in-context.
-    func startAudio() {
-        guard !audioRunning else { return }
-
+    /// Begin always-on mic monitoring for spoken codewords. Starts the shared
+    /// engine + tap and the on-device speech listener. Requests mic permission
+    /// in-context. Safe to call repeatedly; updates the codewords each time.
+    func startMonitoring(codewords: [String]) {
+        speech.configure(codewords: codewords)
         AVAudioApplication.requestRecordPermission { [weak self] granted in
             guard let self else { return }
             guard granted else {
-                print("[capture] microphone permission denied")
+                print("[capture] microphone permission denied; spoken codewords unavailable (typed still works)")
                 return
             }
-            self.sessionQueue.async {
-                self.startAudioEngine()
-            }
+            self.sessionQueue.async { self.startEngineIfNeeded() }
         }
     }
 
-    private func startAudioEngine() {
-        guard !audioRunning else { return }
+    private func startEngineIfNeeded() {
+        guard !engineRunning else { speech.start(); return }
         do {
             // Shared AVAudioSession config — verbatim from the legacy AI module.
             let session = AVAudioSession.sharedInstance()
@@ -104,48 +110,58 @@ final class CaptureCoordinator: NSObject {
             try session.setActive(true)
 
             let inputNode = engine.inputNode
-            let inputFormat = inputNode.outputFormat(forBus: 0)
-            guard inputFormat.channelCount > 0, inputFormat.sampleRate > 0 else {
+            let format = inputNode.outputFormat(forBus: 0)
+            guard format.channelCount > 0, format.sampleRate > 0 else {
                 print("[capture] invalid microphone input format")
                 return
             }
+            inputFormat = format
 
-            // Arm both consumers for this input format.
-            classifier.prepare(format: inputFormat)
-            audioStreamer.prepare(inputFormat: inputFormat)
-
-            // Single tap, fanned out to both consumers (PROTOCOL §5.4).
+            // Single tap, fanned out (PROTOCOL §5.4). Speech listens ALWAYS;
+            // classifier + PCM streamer only while an incident is active.
             // bufferSize 8192 matches the legacy AI module exactly.
-            inputNode.installTap(onBus: 0, bufferSize: 8192, format: inputFormat) { [weak self] buffer, time in
+            inputNode.installTap(onBus: 0, bufferSize: 8192, format: format) { [weak self] buffer, time in
                 guard let self else { return }
-                // (a) SoundAnalysis classifier.
-                self.classifier.analyze(buffer: buffer, atFramePosition: time.sampleTime)
-                // (b) PCM downsample/packetize for streaming.
-                self.audioStreamer.ingest(buffer: buffer)
+                self.speech.ingest(buffer: buffer)                 // always (spoken codewords)
+                if self.audioConsumersActive {
+                    self.classifier.analyze(buffer: buffer, atFramePosition: time.sampleTime)
+                    self.audioStreamer.ingest(buffer: buffer)
+                }
             }
 
             engine.prepare()
             try engine.start()
-            audioRunning = true
+            engineRunning = true
+            speech.start()
         } catch {
             print("[capture] failed to start audio engine: \(error.localizedDescription)")
-            stopAudioEngine()
         }
     }
 
+    // MARK: - Audio consumers (Tier ≥ 1)
+
+    /// Activate the SoundAnalysis classifier + PCM streamer for an active incident.
+    /// The engine is already running from monitoring; this just arms the consumers.
+    func startAudio() {
+        sessionQueue.async { [weak self] in
+            guard let self else { return }
+            self.startEngineIfNeeded()              // safety: ensure the engine is up
+            guard let format = self.inputFormat else { return }
+            self.classifier.prepare(format: format)
+            self.audioStreamer.prepare(inputFormat: format)
+            self.audioConsumersActive = true
+        }
+    }
+
+    /// Stop the incident audio consumers, but KEEP the engine + speech listener
+    /// running so spoken codewords still work at idle (Tier 0).
     func stopAudio() {
         sessionQueue.async { [weak self] in
-            self?.stopAudioEngine()
+            guard let self else { return }
+            self.audioConsumersActive = false
+            self.classifier.stop()
+            self.audioStreamer.stop()
         }
-    }
-
-    private func stopAudioEngine() {
-        guard audioRunning || engine.isRunning else { return }
-        engine.inputNode.removeTap(onBus: 0)
-        engine.stop()
-        classifier.stop()
-        audioStreamer.stop()
-        audioRunning = false
     }
 
     // MARK: - Video (Tier ≥ 2)
@@ -244,11 +260,29 @@ final class CaptureCoordinator: NSObject {
 
     // MARK: - Teardown
 
-    /// Stop everything and deactivate the audio session (on de-escalation to T0).
+    /// Stop the incident capture (video + audio consumers) on de-escalation to
+    /// Tier 0, but KEEP always-on monitoring (engine + speech) alive so spoken
+    /// codewords can re-open an incident. Use `stopMonitoring()` to fully stop.
     func stopAll() {
         stopVideo()
         stopAudio()
-        sessionQueue.async {
+    }
+
+    /// Fully stop everything including always-on monitoring, and release the audio
+    /// session (e.g. when the user disables voice activation).
+    func stopMonitoring() {
+        stopVideo()
+        speech.stop()
+        sessionQueue.async { [weak self] in
+            guard let self else { return }
+            self.audioConsumersActive = false
+            self.classifier.stop()
+            self.audioStreamer.stop()
+            if self.engineRunning {
+                self.engine.inputNode.removeTap(onBus: 0)
+                self.engine.stop()
+                self.engineRunning = false
+            }
             try? AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
         }
     }
@@ -296,11 +330,20 @@ extension CaptureCoordinator: SoundClassifierDelegate {
                          didEmitLabel label: String,
                          confidence: Double,
                          rawIdentifier: String) {
-        // The classifier already emits on the main queue; re-dispatch to satisfy
-        // the @MainActor delegate isolation regardless.
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             self.delegate?.captureCoordinator(self, didEmitAILabel: label, confidence: confidence, rawIdentifier: rawIdentifier)
+        }
+    }
+}
+
+// MARK: - Spoken codeword → delegate
+
+extension CaptureCoordinator: SpeechCodewordListenerDelegate {
+    func speechCodewordListener(_ listener: SpeechCodewordListener, didHear word: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.delegate?.captureCoordinator(self, didRecognizeCodeword: word)
         }
     }
 }

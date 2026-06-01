@@ -39,6 +39,8 @@
 	<string>Weather uses your location to show the local forecast.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Weather uses the microphone for ambient noise and wind readings.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Weather uses on-device speech recognition for hands-free voice commands. Audio is processed on your device and never leaves it.</string>
 	<key>SafeHavenRelayHost</key>
 	<string>192.168.8.89:8080</string>
 	<key>SafeHavenRelayUsesTLS</key>
