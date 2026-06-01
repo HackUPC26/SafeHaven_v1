@@ -314,7 +314,7 @@ const AI_CYCLE = [
   { label: 'GLASS_BREAKING', raw_identifier: 'glass_breaking', confidence: 0.85 },
   { label: 'IMPACT', raw_identifier: 'thump_thud', confidence: 0.71 },
   { label: 'CRYING', raw_identifier: 'crying_sobbing', confidence: 0.66 },
-  { label: 'GUNSHOT', raw_identifier: 'gunshot_gunfire', confidence: 0.94 },
+  { label: 'IMPACT', raw_identifier: 'gunshot_gunfire', confidence: 0.94 }, // loud bang -> loud impact (no firearm claim)
   { label: 'DOOR_SLAM', raw_identifier: 'door_slam', confidence: 0.69 },
   { label: 'SLAP', raw_identifier: 'slap_smack', confidence: 0.63 },
   { label: 'EXTENDED_SILENCE', raw_identifier: 'silence', confidence: 1.0 },

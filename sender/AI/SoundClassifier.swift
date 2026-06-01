@@ -233,6 +233,10 @@ final class SoundClassifier {
             return "CRYING"
         }
 
+        // Apple's `gunshot_gunfire` class is surfaced as a generic loud IMPACT,
+        // NOT a firearm claim. SafeHaven deliberately does not predict gunshots
+        // — that is unreliable and unsafe to assert — but a loud bang is still a
+        // real danger signal worth flagging as a loud impact.
         if identifier == "thump_thud" ||
             identifier == "crushing" ||
             identifier == "boom" ||
@@ -240,12 +244,9 @@ final class SoundClassifier {
             identifier == "knock" ||
             identifier == "tap" ||
             identifier == "wood_cracking" ||
-            identifier == "chopping_wood" {
+            identifier == "chopping_wood" ||
+            identifier == "gunshot_gunfire" {
             return "IMPACT"
-        }
-
-        if identifier == "gunshot_gunfire" {
-            return "GUNSHOT"
         }
 
         if identifier == "slap_smack" {

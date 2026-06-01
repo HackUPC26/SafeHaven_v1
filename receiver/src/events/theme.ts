@@ -25,7 +25,7 @@ export const COLORS = {
 /**
  * typeColor — audio-event dot/label tint by internal eventType.
  * Ported verbatim from the legacy AudioPanel.
- *   impact  -> red    (alerting impacts: screaming, gunshot, glass, etc.)
+ *   impact  -> red    (alerting impacts: screaming, loud impact, glass, etc.)
  *   shout   -> amber  (raised voice)
  *   silence -> slate  (extended silence)
  *   speech  -> blue   (normal speech / fallback)

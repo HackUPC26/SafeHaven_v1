@@ -160,8 +160,8 @@ Base shapes are **unchanged** from the hackathon wire; the agreed enrichments ar
   "address": null, "timestamp_iso": "..." }
 
 // ai_label — confidence MUST be clamped to [0,1] before sending
-{ "event_type": "ai_label", "label": "GUNSHOT", "confidence": 0.91,
-  "source": "SoundAnalysis", "raw_identifier": "gunshot_gunfire", "timestamp_iso": "..." }
+{ "event_type": "ai_label", "label": "SCREAMING", "confidence": 0.91,
+  "source": "SoundAnalysis", "raw_identifier": "screaming", "timestamp_iso": "..." }
 
 // incident_start — NEW: sent by the sender at session open with the configured display name
 { "event_type": "incident_start", "person_name": "Maria",
@@ -181,15 +181,14 @@ The sender emits `incident_start` **first**, synchronously with reaching Tier �
 
 ### 5.3 AI labels — ported verbatim from `SafeHavenAIModule.swift`
 
-The 9 valid labels and the on-device mapping/constants are **unchanged** and re-implemented in Swift exactly:
+The 8 valid labels and the on-device mapping/constants are re-implemented in Swift exactly as the legacy module, with **one deliberate change: there is no `GUNSHOT` label** — SafeHaven does not claim firearm detection (unreliable and unsafe to assert). Apple's `gunshot_gunfire` acoustic class is folded into `IMPACT` (a loud impact), so a loud bang is still flagged without the over-claim.
 
-- **Labels:** `SHOUTING, SCREAMING, CRYING, IMPACT, GUNSHOT, SLAP, DOOR_SLAM, GLASS_BREAKING, EXTENDED_SILENCE`.
+- **Labels:** `SHOUTING, SCREAMING, CRYING, IMPACT, SLAP, DOOR_SLAM, GLASS_BREAKING, EXTENDED_SILENCE`.
 - **`safeHavenLabel(for:)` mapping** (identifier normalized → lowercase, space/dash → `_`):
   - `SHOUTING` ← `shout` | `yell` | `children_shouting` | contains `shout`/`yell`
   - `SCREAMING` ← `screaming` | `battle_cry` | contains `scream`
   - `CRYING` ← `crying_sobbing` | `baby_crying` | contains `crying`/`sobbing`
-  - `IMPACT` ← `thump_thud` | `crushing` | `boom` | `hammer` | `knock` | `tap` | `wood_cracking` | `chopping_wood`
-  - `GUNSHOT` ← `gunshot_gunfire`
+  - `IMPACT` ← `thump_thud` | `crushing` | `boom` | `hammer` | `knock` | `tap` | `wood_cracking` | `chopping_wood` | `gunshot_gunfire` *(surfaced as a generic loud impact, **not** a firearm claim)*
   - `SLAP` ← `slap_smack`
   - `DOOR_SLAM` ← `door_slam`
   - `GLASS_BREAKING` ← `glass_breaking` | `glass_clink`
