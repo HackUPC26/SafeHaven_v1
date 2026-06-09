@@ -50,7 +50,7 @@ final class SettingsStore: ObservableObject {
         static let codewords = "safehaven.codewords" // JSON {tier1,tier2,tier3}
     }
     // Keychain account for the pairing id blob.
-    private static let keychainService = "com.fochs.safehaven"
+    private static let keychainService = "com.kene.safehaven"
     private static let keychainAccount = "pairingId"
 
     init() {

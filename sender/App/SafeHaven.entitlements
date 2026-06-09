@@ -6,7 +6,7 @@
 	     The $(AppIdentifierPrefix) macro is expanded by Xcode at build time. -->
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.fochs.safehaven</string>
+		<string>$(AppIdentifierPrefix)com.kene.safehaven</string>
 	</array>
 </dict>
 </plist>

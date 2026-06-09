@@ -49,6 +49,7 @@
 	<array>
 		<string>audio</string>
 		<string>location</string>
+		<string>voip</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
