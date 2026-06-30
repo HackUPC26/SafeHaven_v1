@@ -12,3 +12,6 @@ sender/SafeHaven.xcodeproj/
 sender/*.xcworkspace/
 sender/build/
 DerivedData/
+
+# Extracted service repositories
+relay/
