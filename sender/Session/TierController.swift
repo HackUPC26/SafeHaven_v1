@@ -14,8 +14,10 @@
 //  Trigger rules:
 //    - HOLD (3s on the H/L row): from T0 only, escalate to T1 and emit
 //      incident_opened{tier:1, trigger:"hold"}. (App.js sos handler.)
-//    - CODEWORD (every keystroke, lowercased+trimmed): monotonic +1 only:
-//      sunny@0->1, cloudy@1->2, stormy@2->3, emitting tier_changed{trigger:"codeword"}.
+//    - CODEWORD (every keystroke, lowercased+trimmed): monotonic escalation to
+//      the matched tier: sunny->1, cloudy->2, stormy->3, emitting
+//      tier_changed{trigger:"codeword"}. Higher-tier codewords may open a new
+//      incident directly at that tier.
 //    - On the FIRST escalation reaching Tier ≥ 1, emit incident_start with the
 //      configured display name (PROTOCOL §5.2) BEFORE the triggering event, so
 //      the relay's session log opens with the header.
@@ -87,26 +89,33 @@ final class TierController: ObservableObject {
         emitToLocalLogIfConsented(IncidentOpenedEvent(tier: 1))
     }
 
-    /// Codeword check on every keystroke. Lowercased + trimmed; monotonic +1
-    /// only. Mirrors App.js checkCodeword exactly. PROTOCOL §5.1.
-    func handleCodewordInput(_ text: String) {
+    /// Codeword check on every keystroke. Lowercased + trimmed; monotonic
+    /// escalation to the matched tier. PROTOCOL §5.1.
+    @discardableResult
+    func handleCodewordInput(_ text: String) -> Bool {
         let word = text.lowercased().trimmingCharacters(in: .whitespaces)
         let cw = settings.codewords
 
-        if word == cw.tier1, tier == 0 {
-            openIncidentIfNeeded(initialTier: 1, trigger: .codeword)
-            applyTier(1)
-            relay.sendEvent(TierChangedEvent(tier: 1, trigger: .codeword))
-            emitToLocalLogIfConsented(TierChangedEvent(tier: 1, trigger: .codeword))
-        } else if word == cw.tier2, tier == 1 {
-            applyTier(2)
-            relay.sendEvent(TierChangedEvent(tier: 2, trigger: .codeword))
-            emitToLocalLogIfConsented(TierChangedEvent(tier: 2, trigger: .codeword))
-        } else if word == cw.tier3, tier == 2 {
-            applyTier(3)
-            relay.sendEvent(TierChangedEvent(tier: 3, trigger: .codeword))
-            emitToLocalLogIfConsented(TierChangedEvent(tier: 3, trigger: .codeword))
+        let targetTier: Int?
+        if word == cw.tier1 {
+            targetTier = 1
+        } else if word == cw.tier2 {
+            targetTier = 2
+        } else if word == cw.tier3 {
+            targetTier = 3
+        } else {
+            targetTier = nil
         }
+
+        guard let targetTier, targetTier > tier else { return false }
+
+        openIncidentIfNeeded(initialTier: targetTier, trigger: .codeword)
+        applyTier(targetTier)
+
+        let changed = TierChangedEvent(tier: targetTier, trigger: .codeword)
+        relay.sendEvent(changed)
+        emitToLocalLogIfConsented(changed)
+        return true
     }
 
     /// Explicit stop / de-escalation to Tier 0 (e.g. from a future manual
@@ -235,7 +244,7 @@ extension TierController: CaptureCoordinatorDelegate {
 
     func captureCoordinator(_ c: CaptureCoordinator, didRecognizeCodeword word: String) {
         // Spoken codeword (on-device) → identical monotonic tier logic as typed
-        // input. handleCodewordInput gates so e.g. "stormy" at Tier 0 does nothing.
+        // input. Higher-tier words can open directly at their matched tier.
         handleCodewordInput(word)
     }
 }

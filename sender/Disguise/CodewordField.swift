@@ -5,14 +5,16 @@
 //  Port of App.js's hidden codeword TextInput ("Search weather..."). Looks like
 //  an ordinary search field; on EVERY keystroke it forwards the raw text to the
 //  tier controller, which lowercases + trims and applies the monotonic codeword
-//  rules. Styled to blend into the weather gradient (faint underline, white text).
+//  rules. Clears after a consumed codeword so the next typed codeword starts
+//  from an empty field. Styled to blend into the weather gradient.
 //
 
 import SwiftUI
 
 struct CodewordField: View {
-    /// Called on every change with the raw field text (App.js onChangeText).
-    let onChange: (String) -> Void
+    /// Called on every change with the raw field text. Returns true if a
+    /// codeword was consumed and the search text should reset.
+    let onChange: (String) -> Bool
 
     @State private var text: String = ""
 
@@ -33,7 +35,9 @@ struct CodewordField: View {
             }
             .padding(.top, 8)
             .onChange(of: text) { _, newValue in
-                onChange(newValue)
+                if onChange(newValue) {
+                    text = ""
+                }
             }
     }
 }
