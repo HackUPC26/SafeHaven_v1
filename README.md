@@ -27,8 +27,7 @@ phone (disguised as a weather app) through a relay.
 | Path | What |
 |---|---|
 | [`PROTOCOL.md`](./PROTOCOL.md) | Ratified wire protocol — the single source of truth for all three components |
-| [`relay/`](./relay/) | Node `ws` relay (stateful session-log; replays the timeline to late joiners) |
-| [`receiver/`](./receiver/) | Vite + React + TypeScript browser dashboard |
+| [`relay/`](./relay/) | Standalone relay repo: Node `ws` relay plus embedded Vite + React receiver source in `relay/receiver/` |
 | [`sender/`](./sender/) | Native Swift/SwiftUI iOS 17 app (XcodeGen project) |
 | [`tools/mock-sender/`](./tools/mock-sender/) | Scripted sender for testing the receiver without a phone |
 
@@ -61,20 +60,27 @@ Each directory has its own README with component-specific detail.
 ```bash
 cd relay
 npm install
+npm run build             # builds embedded receiver into relay/receiver/dist for production
 npm start                 # listens on :8080
 # options: PORT=9000 npm start   |   MAX_EVENT_LOG=5000 npm start   |   STRICT_VERSION=1 npm start
 ```
 In **production** the relay also static-serves the receiver's built bundle
-(`receiver/dist`) on the same port — one origin for page + socket. In **dev** the
-receiver runs on its own Vite server (below) and proxies `/ws` to the relay.
+(`relay/receiver/dist`) on the same port — one origin for page + socket. In
+**dev** the receiver runs on its own Vite server (below) and proxies `/ws` to the
+relay.
 
 ### 2. Receiver
 ```bash
-cd receiver
+cd relay
+npm ci --prefix receiver
+npm run dev:receiver      # http://localhost:5173  (proxies /ws → ws://localhost:8080)
+
+# or work directly in the embedded receiver app:
+cd relay/receiver
 npm install
 npm run dev               # http://localhost:5173  (proxies /ws → ws://localhost:8080)
 # open with a pairing fragment:  http://localhost:5173/#<token>:<key>
-npm run build             # production bundle → receiver/dist (served by the relay)
+npm run build             # production bundle → relay/receiver/dist (served by the relay)
 npm run typecheck         # tsc --noEmit
 ```
 
@@ -102,7 +108,7 @@ node mock-sender.js        # prints a receiver URL; drives a full scripted incid
 
 ### Path A — relay + mock-sender + receiver (no phone needed)
 1. **Relay:** `cd relay && npm install && npm start`
-2. **Receiver (dev):** `cd receiver && npm install && npm run dev`
+2. **Receiver (dev):** `cd relay && npm ci --prefix receiver && npm run dev:receiver`
 3. **Mock sender:** `cd tools/mock-sender && npm install && node mock-sender.js`
    It prints a pairing URL like `http://localhost:8080/#<token>:<key>`. For the
    Vite dev server, open it on the **dev origin** instead:
@@ -159,7 +165,7 @@ status dot (amber T1/T2, red T3).
   `STRICT_VERSION` (optional; `1` closes mismatched protocol versions with 4003
   instead of warn-and-allow). **No other env vars.**
 - **Receiver:** **no env vars.** It connects same-origin to `/ws`; the dev proxy
-  target lives in `receiver/vite.config.ts` (`ws://localhost:8080`).
+  target lives in `relay/receiver/vite.config.ts` (`ws://localhost:8080`).
 - **Sender:** **no env vars** (it's a native app). The relay host — the analogue
   of the old `EXPO_PUBLIC_SIGNAL_HOST` — is set via the `SafeHavenRelayHost` /
   `SafeHavenRelayUsesTLS` keys in `App/Info.plist`, overridable at runtime in the
