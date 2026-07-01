@@ -18,7 +18,7 @@ historical context.
 - The sender moved from React Native/Expo to native Swift/SwiftUI.
 - Video uses VideoToolbox H.264 at 720p.
 - Audio is raw PCM from a single AVAudioEngine path.
-- GPS uses CoreLocation.
+- GPS uses CoreLocation, an Apple native framework.
 - Sound labels use on-device SoundAnalysis.
 - Pairing uses a cryptographically random `<token>:<key>` value generated on
   device.

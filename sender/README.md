@@ -1,8 +1,8 @@
 # SafeHaven Sender
 
 Native Swift/SwiftUI iOS app for the protected person. The app is disguised as
-a Barcelona weather utility and opens a covert safety session only through
-deliberate gestures or codewords.
+a weather utility (extensible to other disguises!) and opens a covert safety session only through
+deliberate actions or saying your codewords (see Covert Controls section).
 
 The sender implements the shared [wire protocol](../PROTOCOL.md) and streams to
 the relay over one WebSocket.
@@ -46,7 +46,8 @@ The hidden Settings screen can override the relay host at runtime.
 | Gesture | Result |
 |---|---|
 | Hold the `H:24  L:15` row for 3 seconds | Opens a Tier 1 incident. |
-| Type a configured codeword in weather search | Escalates one tier. Defaults: `sunny`, `cloudy`, `stormy`. |
+| Type a configured codeword in weather search | Escalates to tier X. Defaults: `sunny`, `cloudy`, `stormy`. |
+| Say a configured codeword out load | Escalates to tier X. Defaults: `sunny`, `cloudy`, `stormy`. |
 | Long-press `Barcelona` for about 2 seconds | Opens hidden Settings. |
 
 Tier behavior:
@@ -54,7 +55,7 @@ Tier behavior:
 - T0: disguise only
 - T1: relay socket, audio, GPS, and sound labels
 - T2: adds video
-- T3: emergency state
+- T3: emergency state + button
 
 ## Documentation
 

@@ -83,10 +83,10 @@ live frames continue, so the late tab reconstructs the incident from the start.
 | Action | Gesture | Effect |
 |---|---|---|
 | Open incident | Press and hold the `H:24  L:15` row for 3 seconds | Opens Tier 1 with `incident_opened`, trigger `hold`. |
-| Escalate | Type a codeword in the weather search field | Escalates one tier with trigger `codeword`. Defaults: `sunny`, `cloudy`, `stormy`. |
+| Escalate | Type a codeword in the weather search field or say codeword out loud | Escalates to tier X with trigger `codeword`. Defaults: `sunny`, `cloudy`, `stormy`. |
 | Hidden settings | Long-press `Barcelona` for about 2 seconds | Opens display name, codewords, pairing URL, relay host, and consent settings. |
 
-Escalation is monotonic: T0 -> T1 -> T2 -> T3. T1 starts audio, GPS, and sound
+You can esacalate from T0 to any tier, descalation isn't available at the moment. T1 starts audio, GPS, and sound
 classification; T2 adds video; T3 marks emergency state.
 
 ## Validation Checklist

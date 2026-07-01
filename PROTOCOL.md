@@ -1,6 +1,6 @@
 # SafeHaven v1 — Wire Protocol
 
-**Status:** DRAFT for ratification. Do not build until signed off.
+**Status:** DRAFT for ratification. 
 **Protocol version:** `1`
 **Transport:** a single server-mediated WebSocket per participant, through a relay keyed by session token. No WebRTC, no Hypercore, no peer-to-peer.
 
