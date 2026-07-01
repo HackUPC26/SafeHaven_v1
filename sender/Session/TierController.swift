@@ -14,7 +14,7 @@
 //  Trigger rules:
 //    - HOLD (3s on the H/L row): from T0 only, escalate to T1 and emit
 //      incident_opened{tier:1, trigger:"hold"}. (App.js sos handler.)
-//    - CODEWORD (every keystroke, lowercased+trimmed): monotonic escalation to
+//    - CODEWORD (every keystroke, lowercased+trimmed): direct-to-tier escalation to
 //      the matched tier: sunny->1, cloudy->2, stormy->3, emitting
 //      tier_changed{trigger:"codeword"}. Higher-tier codewords may open a new
 //      incident directly at that tier.
@@ -89,7 +89,7 @@ final class TierController: ObservableObject {
         emitToLocalLogIfConsented(IncidentOpenedEvent(tier: 1))
     }
 
-    /// Codeword check on every keystroke. Lowercased + trimmed; monotonic
+    /// Codeword check on every keystroke. Lowercased + trimmed; direct-to-tier
     /// escalation to the matched tier. PROTOCOL §5.1.
     @discardableResult
     func handleCodewordInput(_ text: String) -> Bool {
@@ -243,7 +243,7 @@ extension TierController: CaptureCoordinatorDelegate {
     }
 
     func captureCoordinator(_ c: CaptureCoordinator, didRecognizeCodeword word: String) {
-        // Spoken codeword (on-device) → identical monotonic tier logic as typed
+        // Spoken codeword (on-device) -> identical direct-to-tier logic as typed
         // input. Higher-tier words can open directly at their matched tier.
         handleCodewordInput(word)
     }

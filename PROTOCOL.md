@@ -1,6 +1,6 @@
 # SafeHaven v1 — Wire Protocol
 
-**Status:** DRAFT for ratification. 
+**Status:** DRAFT for ratification.
 **Protocol version:** `1`
 **Transport:** a single server-mediated WebSocket per participant, through a relay keyed by session token. No WebRTC, no Hypercore, no peer-to-peer.
 
@@ -151,7 +151,7 @@ Base shapes are **unchanged** from the hackathon wire; the agreed enrichments ar
 // incident_opened — fired ONLY by the 3s hold trigger, ONLY from Tier 0
 { "event_type": "incident_opened", "tier": 1, "trigger": "hold", "timestamp_iso": "..." }
 
-// tier_changed — fired by codewords (monotonic +1) and any other escalation
+// tier_changed — fired by codewords (direct-to-tier) and any other escalation
 { "event_type": "tier_changed", "tier": 2, "trigger": "codeword", "timestamp_iso": "..." }
 
 // gps_update — base {lat,lng}; enriched fields optional/null-safe
@@ -173,7 +173,7 @@ Base shapes are **unchanged** from the hackathon wire; the agreed enrichments ar
 
 **`trigger`** ∈ `hold` | `codeword` | `ai_auto` | `manual`. The receiver should read it (falling back to `"codeword"` only if absent, for back-compat) so the incident log shows the real cause.
 
-**`label`** is one of the 9 valid labels (§5.3). **`raw_identifier`** is the normalized Apple identifier; carried end-to-end even though today's receiver UI doesn't surface it.
+**`label`** is one of the 8 protocol labels (§5.3). **`raw_identifier`** is the normalized Apple identifier; carried end-to-end even though today's receiver UI doesn't surface it.
 
 ### 5.2 incident_start and session opening
 

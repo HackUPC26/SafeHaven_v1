@@ -29,7 +29,7 @@ private let duplicateSuppressionSeconds = 2.0
 private let extendedSilenceSeconds = 5.0
 
 /// Emits an ai_label for a mapped, above-threshold classification. The label is
-/// one of the 9 valid labels; confidence is clamped to [0,1] by the caller path.
+/// one of the 8 protocol labels; confidence is clamped to [0,1] by the caller path.
 protocol SoundClassifierDelegate: AnyObject {
     func soundClassifier(_ classifier: SoundClassifier,
                          didEmitLabel label: String,

@@ -95,7 +95,7 @@ struct IncidentOpenedEvent: Codable {
     }
 }
 
-/// `tier_changed` — codewords (monotonic +1) and any other escalation. PROTOCOL §5.1.
+/// `tier_changed` — codewords (direct-to-tier) and any other escalation. PROTOCOL §5.1.
 struct TierChangedEvent: Codable {
     let event_type: String
     let tier: Int

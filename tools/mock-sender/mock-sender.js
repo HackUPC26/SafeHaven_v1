@@ -304,7 +304,7 @@ function nextGps() {
 }
 
 // ---------------------------------------------------------------------------
-// AI labels — cycle through several of the 9 valid labels (§5.3) with clamped
+// AI labels — cycle through the 8 protocol labels (§5.3) with clamped
 // confidences (§5.1: confidence MUST be clamped to [0,1]).
 // raw_identifier mirrors the normalized Apple identifier the Swift mapping uses.
 // ---------------------------------------------------------------------------
@@ -332,9 +332,9 @@ function nextAiLabel() {
   }
 }
 
-// Codeword tier escalation is monotonic +1: sunny@0->1, cloudy@1->2, stormy@2->3
-// (§ contract). incident_opened (HOLD) fires the 0->1 transition; subsequent
-// escalations are tier_changed with trigger "codeword".
+// Codeword tier escalation is direct-to-tier: sunny->1, cloudy->2, stormy->3.
+// incident_opened (HOLD) fires this script's 0->1 transition; subsequent
+// scripted escalations are tier_changed with trigger "codeword".
 let currentTier = 0
 
 // ---------------------------------------------------------------------------
@@ -416,11 +416,11 @@ function runScript() {
   // Kick one out immediately so the map isn't empty for 3 s.
   emitEvent(nextGps())
 
-  // Periodic AI labels — one every ~4 s, cycling the 9 labels (§5.3).
+  // Periodic AI labels — one every ~4 s, cycling the 8 protocol labels (§5.3).
   every(4000, () => emitEvent(nextAiLabel()))
   after(1500, () => emitEvent(nextAiLabel()))
 
-  // Tier escalations via codeword (monotonic +1), spaced out (§5.1 / contract).
+  // Tier escalations via codeword (direct-to-tier), spaced out (§5.1 / contract).
   if (args.maxTier >= 2) {
     after(6000, () => {
       currentTier = 2

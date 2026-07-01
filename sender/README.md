@@ -47,7 +47,7 @@ The hidden Settings screen can override the relay host at runtime.
 |---|---|
 | Hold the `H:24  L:15` row for 3 seconds | Opens a Tier 1 incident. |
 | Type a configured codeword in weather search | Escalates to tier X. Defaults: `sunny`, `cloudy`, `stormy`. |
-| Say a configured codeword out load | Escalates to tier X. Defaults: `sunny`, `cloudy`, `stormy`. |
+| Say a configured codeword out loud | Escalates to tier X. Defaults: `sunny`, `cloudy`, `stormy`. |
 | Long-press `Barcelona` for about 2 seconds | Opens hidden Settings. |
 
 Tier behavior:

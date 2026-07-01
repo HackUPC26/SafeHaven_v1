@@ -12,7 +12,7 @@
 //  It is fed microphone buffers by CaptureCoordinator's single shared AVAudioEngine
 //  tap (PROTOCOL §5.4 — one engine), and runs from the moment monitoring starts
 //  (idle/Tier 0) so a spoken codeword can OPEN an incident, not just escalate it.
-//  The monotonic tier logic that decides what each codeword does lives in
+//  The direct-to-tier logic that decides what each codeword does lives in
 //  TierController.handleCodewordInput, reused verbatim for typed and spoken input.
 //
 
@@ -21,7 +21,7 @@ import Speech
 import AVFoundation
 
 protocol SpeechCodewordListenerDelegate: AnyObject {
-    /// A configured codeword was heard. The receiver applies the same monotonic
+    /// A configured codeword was heard. The receiver applies the same direct-to-tier
     /// escalation logic as typed input (TierController.handleCodewordInput).
     func speechCodewordListener(_ listener: SpeechCodewordListener, didHear word: String)
 }

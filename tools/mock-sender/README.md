@@ -22,8 +22,8 @@ this, opens the printed receiver URL, and watches a full incident populate.
   - `incident_start` (with `person_name`) + `incident_opened` (HOLD, Tier 1),
   - moving `gps_update`s around Barcelona (~41.3874, 2.1686) with
     accuracy/speed/heading/altitude so the trail is visible,
-  - `tier_changed` escalations (codeword, monotonic +1) up to `--max-tier`,
-  - `ai_label`s cycling several of the 9 valid labels (§5.3) with clamped
+  - `tier_changed` escalations (codeword, direct-to-tier) up to `--max-tier`,
+  - `ai_label`s cycling the 8 protocol labels (§5.3) with clamped
     confidences,
   - optional `incident_closed` (with `--close`).
 - **Real** BINARY audio: synthesized sine-wave **PCM Int16, 16 kHz, mono, 20 ms

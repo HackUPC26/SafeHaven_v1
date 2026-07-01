@@ -23,8 +23,9 @@ sender/
 
 - The app starts as a normal weather interface.
 - TierController owns the T0-T3 session state.
-- Capture starts only when the tier requires it.
-- Permissions are requested in context, not at first launch.
+- Spoken-codeword monitoring starts from launch so a voice codeword can open an incident.
+- PCM streaming, SoundAnalysis labels, GPS, and video still start only when the tier requires them.
+- Microphone and speech permissions are requested for spoken-codeword monitoring; camera and location remain tier-gated.
 - The relay socket opens at Tier 1 and closes when the incident returns to T0.
 
 ## Media And Events

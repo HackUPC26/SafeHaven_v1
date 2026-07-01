@@ -22,8 +22,8 @@
 //  (automaticallyConfiguresApplicationAudioSession = false) so starting video
 //  never disrupts the running engine.
 //
-//  Permissions are requested IN-CONTEXT (mic on monitoring start, camera on video
-//  start), never bundled at first launch.
+//  Mic permission is requested when spoken-codeword monitoring starts; camera is
+//  requested on video start.
 //
 
 import Foundation
@@ -49,7 +49,7 @@ protocol CaptureCoordinatorDelegate: AnyObject {
                             confidence: Double,
                             rawIdentifier: String)
     /// A spoken codeword was recognized (on-device). The owner applies the same
-    /// monotonic tier logic as typed input.
+    /// direct-to-tier logic as typed input.
     func captureCoordinator(_ c: CaptureCoordinator, didRecognizeCodeword word: String)
 }
 
