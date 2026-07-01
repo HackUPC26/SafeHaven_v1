@@ -1,12 +1,12 @@
 # Local Development
 
 This runbook covers the full SafeHaven v1 stack in a local checkout where the
-standalone RelayServer repo is available at `SafeHaven_v1/relay`.
+standalone Relay-Receiver repo is available at `SafeHaven_v1/relay`.
 
 If `relay/` is missing, create the local checkout first:
 
 ```bash
-git clone https://github.com/HackUPC26/RelayServer.git relay
+git clone https://github.com/HackUPC26/Relay-Receiver.git relay
 ```
 
 ## Prerequisites

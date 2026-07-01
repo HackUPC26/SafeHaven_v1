@@ -1,0 +1,688 @@
+[speech] configured 3 spoken codeword(s)
+[speech] requesting authorization
+[speech] authorized
+[speech] first mic buffer received: 8192 frames @ 48000.0 Hz, 1 channel(s)
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition result received
+[speech] matched spoken codeword
+[relay] connecting to wss://safehaven-relayserver.fly.dev/ws?role=sender&token=84759cf7d7375e60143b5162c8301bec&v=1
+[speech] recognition task started for locale en_IE
+[speech] requesting authorization
+[speech] authorized
+[speech] recognition result received
+[speech] recognition task produced final result; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: Recognition request was canceled; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+numANECores: Unknown aneSubType
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[relay] connected to safehaven-relayserver.fly.dev (reconnect: false)
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] recognition task ended: No speech detected; restarting
+[speech] recognition task started for locale en_IE
+[speech] appending mic buffers to recognition request
+[speech] recognition task ended: No speech detected; restarting

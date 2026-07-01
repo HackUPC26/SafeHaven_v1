@@ -18,7 +18,7 @@ wire contract is [PROTOCOL.md](PROTOCOL.md).
 | Component | Location | Purpose |
 |---|---|---|
 | Sender | [sender/](sender/) | Native Swift/SwiftUI iOS app; captures audio, video, GPS, and on-device sound labels. |
-| Relay + receiver | [HackUPC26/RelayServer](https://github.com/HackUPC26/RelayServer) | Standalone Node relay repo. In this workspace it is checked out at `./relay` and includes the Vite receiver app under `relay/receiver`. |
+| Relay + receiver | [HackUPC26/Relay-Receiver](https://github.com/HackUPC26/Relay-Receiver) | Standalone Node relay repo. In this workspace it is checked out at `./relay` and includes the Vite receiver app under `relay/receiver`. |
 | Mock sender | [tools/mock-sender/](tools/mock-sender/) | Scripted Node sender for local relay/receiver testing before using a phone. |
 | Protocol | [PROTOCOL.md](PROTOCOL.md) | Authoritative message, frame, pairing, replay, and encryption-seam contract. |
 
@@ -28,7 +28,7 @@ wire contract is [PROTOCOL.md](PROTOCOL.md).
 
 ```bash
 # if ./relay is missing:
-git clone https://github.com/HackUPC26/RelayServer.git relay
+git clone https://github.com/HackUPC26/Relay-Receiver.git relay
 
 cd relay
 npm install
@@ -83,7 +83,7 @@ relay.
 - [Sender README](sender/README.md)
 - [Sender implementation notes](sender/IMPLEMENTATION.md)
 - [Mock sender README](tools/mock-sender/README.md)
-- [RelayServer README](https://github.com/HackUPC26/RelayServer)
+- [Relay-Receiver README](https://github.com/HackUPC26/Relay-Receiver)
 
 ## Current Constraints
 

@@ -30,7 +30,7 @@ historical context.
 - Audio is scheduled through Web Audio from raw PCM chunks.
 - The receiver reconstructs state from relay-replayed product events, so a late
   joiner sees the incident timeline from the start.
-- The receiver source now lives in the standalone RelayServer repo under
+- The receiver source now lives in the standalone Relay-Receiver repo under
   `receiver/`.
 
 ## Protocol
