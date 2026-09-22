@@ -10,7 +10,7 @@ The current v1 architecture is:
 iOS sender -> relay WebSocket -> browser receiver
 ```
 
-No WebRTC, Hypercore, Hyperswarm, or peer-to-peer runtime is used. The shared
+No WebRTC, Hypercore, Hyperswarm, or peer-to-peer runtime is used in the new migrated version. The shared
 wire contract is [PROTOCOL.md](PROTOCOL.md).
 
 ## Components
