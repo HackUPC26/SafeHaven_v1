@@ -6,7 +6,7 @@ server-mediated WebSocket relay.
 
 We wanted for people who find themselves in dangerous scenarios, to have a way to covertly stream their live video, audio and location. 
 
-SafeHaven achieves this through it's UI disguise which carries no video feed on victim's side so it remains covert, while detecting codewords to trigger the incident streaming to a trusted contact, giving perpetrator litte to no visual cue victim is calling for help!
+SafeHaven achieves this through it's UI disguise which carries no video feed on victim's side so it remains covert, while detecting codewords to trigger the incident streaming to a trusted contact, giving perpetrator litte to no visual cue that the victim is calling for help!
 
 The current v1 architecture is:
 
