@@ -1,8 +1,10 @@
 # SafeHaven v1
 
-SafeHaven is a covert personal-safety stack. A native iPhone sender, disguised
+SafeHaven is a covert personal-safety app. A native iPhone sender, disguised
 as a weather app, streams a live incident to a trusted contact through a
 server-mediated WebSocket relay.
+
+We wanted for people who find themselves in dangerous scenarios, to have a way to covertly stream their live video, audio and location. SafeHaven achieves this through it's UI disguise which carries no video feed on victim's side so it remains covert, while detecting codewords to trigger the incident streaming to a trusted contact!
 
 The current v1 architecture is:
 
