@@ -17,6 +17,10 @@ iOS sender -> relay WebSocket -> browser receiver
 No WebRTC, Hypercore, Hyperswarm, or peer-to-peer runtime is used in the new migrated version. The shared
 wire contract is [PROTOCOL.md](PROTOCOL.md).
 
+## Demo Video
+
+See the demo video at this [link](https://youtu.be/DvGF6OGmoGA?si=cct-Byh6seK6Krdb)! 
+
 ## Components
 
 | Component | Location | Purpose |
